@@ -1,0 +1,19 @@
+{
+    "name": "final",
+    "version": "1.0.0",
+    "description": "final assignment for CS4220",
+    "main": "server.js",
+    "scripts": {
+        "start": "./node_modules/.bin/nodemon server.js"
+    },
+    "author": "Jonathan Sum",
+    "license": "ISC",
+    "dependencies": {
+        "coinofcli": "file:./coinofcli",
+        "cors": "^2.8.5",
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.7"
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "name": "cards-app",
+    "version": "1.0.0",
+    "description": "an app for interacting with deck of cards api",
+    "main": "cli.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Cydney Auman",
+    "license": "ISC",
+    "dependencies": {
+        "deckofcards": "file:../deckofcards",
+        "inquirer": "^8.0.0",
+        "yargs": "^16.2.0"
+    }
+}
