@@ -1,9 +1,8 @@
 const router = require('express').Router();
 
-const coin = require('coinofcli')
-
 const collection = require('./db/collection');
 
+// GET /history/search
 router.get('/search', async (req, res) => {
 
     try {
@@ -17,3 +16,5 @@ router.get('/search', async (req, res) => {
         res.status(500).json({ error: error.toString() });
     }
 });
+
+module.exports = router;

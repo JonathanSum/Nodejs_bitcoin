@@ -16,21 +16,23 @@ router.use((req, res, next) => {
 
 // GET /search/<item>
 // GET /search/?item=dog
-
-
 router.get('/', async (req, res) => {
 
     try {
 
         const { item } = req.query;
+        let keyword = "";
+        if (item)
+            keyword = item;
 
-        const search_result = await coin.search_it(item);
+
+        const search_result = await coin.search_it(keyword);
 
         const { coins } = search_result.data;
 
         // add data about cards hands to the file-system "database"
         collection.add({
-            searchKeyword: item,
+            searchKeyword: keyword,
             timeSearched: req.body.timeSearched,
             resultCount: coins.length,
         });
@@ -41,15 +43,16 @@ router.get('/', async (req, res) => {
         } else {
 
             const coin_id_and_name = coins.map((coin) => {
-                // Possible todo here: I may need to put both name and uuid or more into the
-                // value.
+
+                //contains two keys: the id and displayText (text related to the search result). 
+                //displayText here is the coin name
                 return { "coin name": `${coin.name}`, "id": `${coin.uuid}` };
             });
 
             res.json(coin_id_and_name);
         }
 
-        console.log(coins)
+        // console.log(coins)
 
         // respond with a 200 JSON response
 
@@ -58,6 +61,7 @@ router.get('/', async (req, res) => {
     }
 });
 
+// POST /search/<item>
 router.post('/', async (req, res) => {
 
     try {
@@ -65,7 +69,7 @@ router.post('/', async (req, res) => {
         const { id } = req.body;
 
         const selected_json = await coin.select_by_id(id)
-        console.log(selected_json)
+        // console.log(selected_json)
         const one_coin = selected_json.data.coin;
 
         // add data about cards hands to the file-system "database"
